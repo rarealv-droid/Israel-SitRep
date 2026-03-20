@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iran & Hezbollah — Daily Situation Report · 20 March 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{--bg:#fff;--bg2:#f5f4f0;--bg3:#eeecea;--text:#1a1a18;--text2:#6b6a64;--text3:#9c9a92;--border:rgba(60,58,50,0.15);--border2:rgba(60,58,50,0.28);--red-bg:#FCEBEB;--red-text:#791F1F;--red-row:rgba(196,58,58,0.07);--amber-bg:#FAEEDA;--amber-text:#633806;--amber-row:rgba(186,117,23,0.07);--blue-bg:#E6F1FB;--blue-text:#0C447C;--green-bg:#EAF3DE;--green-text:#27500A;--purple-bg:#EEEDFE;--purple-text:#3C3489;--r:10px;--rs:6px}
+@media(prefers-color-scheme:dark){:root{--bg:#1e1e1c;--bg2:#272725;--bg3:#2a2a28;--text:#e8e6de;--text2:#a8a69e;--text3:#6e6c66;--border:rgba(200,198,190,0.12);--border2:rgba(200,198,190,0.22);--red-bg:#3a1a1a;--red-text:#f5a0a0;--red-row:rgba(196,58,58,0.15);--amber-bg:#3a2a0a;--amber-text:#f0c070;--amber-row:rgba(186,117,23,0.15);--blue-bg:#0c2540;--blue-text:#80bcf4;--green-bg:#102010;--green-text:#80c870;--purple-bg:#1e1c40;--purple-text:#b0a8f0}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg3);color:var(--text);font-size:14px;line-height:1.5;padding:24px 16px}
+.page{max-width:960px;margin:0 auto}
+.header{background:var(--bg);border:.5px solid var(--border);border-radius:var(--r);padding:1.2rem 1.5rem;margin-bottom:14px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.header-left{flex:1}.rpt-title{font-size:20px;font-weight:600;margin-bottom:3px}.rpt-sub{font-size:11px;color:var(--text2)}.header-stamp{font-size:10px;color:var(--text3);text-align:right;white-space:nowrap;line-height:1.7}
+.section{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin:1.4rem 0 .5rem}
+.card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:12px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.metric{background:var(--bg2);border-radius:var(--rs);padding:.8rem 1rem}
+.mlabel{font-size:11px;color:var(--text2);margin-bottom:3px}.mval{font-size:22px;font-weight:600;line-height:1.1}.munit{font-size:11px;color:var(--text3);margin-top:2px}
+.mval.red{color:#A32D2D}.mval.amber{color:#854F0B}.mval.blue{color:#185FA5}
+@media(prefers-color-scheme:dark){.mval.red{color:#f07070}.mval.amber{color:#e0a040}.mval.blue{color:#60a0e0}}
+.exec48{list-style:none;padding:0}
+.exec48 li{display:grid;grid-template-columns:195px 1fr;border-bottom:.5px solid var(--border)}
+.exec48 li:last-child{border-bottom:none}
+.exec-cat{padding:10px 12px 10px 0;display:flex;flex-direction:column;gap:3px;border-right:.5px solid var(--border)}
+.exec-cat-title{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--text3)}
+.exec-cat-val{font-size:17px;font-weight:600;line-height:1.15;color:var(--text)}
+.exec-cat-val.red{color:#A32D2D}.exec-cat-val.amber{color:#854F0B}.exec-cat-val.green{color:#27500A}
+.exec-sub{font-size:10px;color:var(--text3)}
+.exec-body{padding:10px 0 10px 14px;font-size:12px;color:var(--text2);line-height:1.62}
+.exec-body b{color:var(--text);font-weight:600}
+.trend{display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;vertical-align:middle;margin-top:2px;margin-right:3px}
+.tr-up{background:#FCEBEB;color:#791F1F}.tr-new{background:#EEEDFE;color:#3C3489}.tr-stable{background:#FAEEDA;color:#633806}.tr-down{background:#EAF3DE;color:#27500A}
+.new-tag{display:inline-block;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:var(--purple-bg);color:var(--purple-text);vertical-align:middle;margin-left:3px}
+.dev-card{background:var(--bg2);border-radius:var(--rs);padding:.85rem 1rem}
+.dev-top{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.dev-label{font-size:12px;font-weight:600}
+.dev-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-left:auto;flex-shrink:0}
+.ds-red{background:var(--red-bg);color:var(--red-text)}.ds-amber{background:var(--amber-bg);color:var(--amber-text)}.ds-green{background:var(--green-bg);color:var(--green-text)}.ds-blue{background:var(--blue-bg);color:var(--blue-text)}
+.dev-body{font-size:11px;color:var(--text2);line-height:1.58}.dev-body b{color:var(--text);font-weight:600}
+.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;vertical-align:middle;white-space:nowrap}
+.b-red{background:var(--red-bg);color:var(--red-text)}.b-amber{background:var(--amber-bg);color:var(--amber-text)}.b-green{background:var(--green-bg);color:var(--green-text)}.b-blue{background:var(--blue-bg);color:var(--blue-text)}
+.norm-row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:.5px solid var(--border);font-size:11px}
+.norm-row:last-child{border-bottom:none}
+.norm-indicator{min-width:150px;font-weight:600;padding-top:2px;flex-shrink:0}
+.norm-val{flex:1;color:var(--text2);line-height:1.4}
+.scroll-x{overflow-x:auto;padding-bottom:4px}
+.ctitle{font-size:13px;font-weight:600;margin-bottom:2px}.csub{font-size:11px;color:var(--text2);margin-bottom:8px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--text2);margin-bottom:8px}
+.leg{display:flex;align-items:center;gap:4px}.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.chart-note{font-size:10px;color:var(--text3);margin-top:6px;line-height:1.5}
+.tab-bar{display:flex;gap:6px;margin-bottom:10px}
+.tab-btn{font-size:11px;font-weight:600;padding:5px 14px;border-radius:var(--rs);border:.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer}
+.tab-btn.active{background:var(--bg2);color:var(--text)}
+.tab-pane{display:none}.tab-pane.active{display:block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{font-size:10px;font-weight:600;color:var(--text2);text-align:left;padding:5px 8px;border-bottom:.5px solid var(--border2)}
+.row-trigger{cursor:pointer;user-select:none}
+.row-trigger td{padding:5px 8px;border-bottom:.5px solid var(--border);vertical-align:middle;line-height:1.35}
+.row-trigger:hover td{background:var(--bg2)}
+.row-detail{display:none}.row-detail.open{display:table-row}
+.row-detail td{padding:5px 10px 9px 28px;border-bottom:.5px solid var(--border);font-size:11px;color:var(--text2);line-height:1.55;background:var(--bg2)}
+.toggle-icon{font-size:9px;color:var(--text3);margin-right:5px;display:inline-block;transition:transform .15s;width:10px}
+.toggle-icon.open{transform:rotate(90deg)}
+tr.hi-fatal .row-trigger td{background:var(--red-row)}
+tr.hi-fatal .row-detail td{background:rgba(196,58,58,0.04)}
+tr.hi-mass .row-trigger td{background:var(--amber-row)}
+tr.hi-mass .row-detail td{background:rgba(186,117,23,0.04)}
+.key-legend{display:flex;gap:14px;font-size:11px;color:var(--text2);margin-bottom:8px;flex-wrap:wrap;align-items:center}
+.key-swatch{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:3px;vertical-align:middle}
+.map-outer{border-radius:var(--rs);overflow:hidden;border:.5px solid var(--border);position:relative}
+.map-viewport{width:100%;height:600px;overflow:hidden;cursor:grab;position:relative}
+.map-viewport:active{cursor:grabbing}
+.map-canvas{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+.map-controls{position:absolute;bottom:12px;right:12px;display:flex;flex-direction:column;gap:5px;z-index:10}
+.map-btn{width:34px;height:34px;background:var(--bg);border:.5px solid var(--border2);border-radius:7px;font-size:20px;font-weight:400;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);user-select:none;line-height:1}
+.map-btn:hover{background:var(--bg2);color:var(--text)}
+.map-hint{position:absolute;top:8px;left:8px;font-size:10px;color:var(--text3);background:rgba(255,255,255,0.88);padding:3px 8px;border-radius:4px;border:.5px solid var(--border);z-index:10;pointer-events:none}
+#mapTip{position:fixed;background:var(--bg);border:.5px solid var(--border2);border-radius:8px;padding:10px 13px;font-size:11px;pointer-events:none;opacity:0;transition:opacity .12s;z-index:9999;max-width:270px;box-shadow:0 4px 20px rgba(0,0,0,0.15);line-height:1.5}
+#mapTip.vis{opacity:1}
+.footer{font-size:10px;color:var(--text3);margin-top:16px;line-height:1.6;border-top:.5px solid var(--border);padding-top:10px}
+@media(max-width:620px){.g3,.g2{grid-template-columns:1fr}.header{flex-direction:column}.header-stamp{text-align:left}.exec48 li{grid-template-columns:1fr}.exec-cat{border-right:none;border-bottom:.5px solid var(--border);padding-bottom:6px}}
+@media print{body{background:white;padding:0}.page{max-width:100%}.map-controls,.map-hint{display:none}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="header">
+  <div class="header-left">
+    <div class="rpt-title">Iran &amp; Hezbollah — Attacks on Israel: Daily Situation Report</div>
+    <div class="rpt-sub">28 February – 20 March 2026 (Day 21) &nbsp;·&nbsp; Open Source Intelligence &nbsp;·&nbsp; IDF · Times of Israel · Al Jazeera · CNN · Haaretz · ACLED · Ops.Group · EASA</div>
+  </div>
+  <div class="header-stamp">Issued: 20 Mar 2026<br>09:00 UTC+2<br>OPEN SOURCE ONLY</div>
+</div>
+
+<!-- 48-HOUR EXEC SUMMARY -->
+<div class="section">48-hour operational summary — 18 Mar 09:00 to 20 Mar 09:00</div>
+<div class="card">
+  <ul class="exec48">
+    <li>
+      <div class="exec-cat">
+        <span class="exec-cat-title">Attack waves</span>
+        <span class="exec-cat-val amber">~130 total</span>
+        <span class="exec-sub">Iran: ~30 &nbsp;·&nbsp; Hezbollah: ~100</span>
+      </div>
+      <div class="exec-body">
+        <b>Iran (18–20 Mar):</b> Multiple barrages including 5 salvos at Jerusalem and northern Israel within a single hour on 19 Mar. Energy infrastructure targeting confirmed — Haifa's Bazan refinery hit by Iranian missile fragments 19 Mar; fire extinguished, no casualties, but refinery disclosed additional structural damage on 20 Mar requiring days to restore. Iran missile rate has declined ~90% from day-1 levels per CENTCOM/JINSA, attributed to launcher destruction and stock depletion.<br>
+        <b>Hezbollah (18–20 Mar):</b> ~50 waves per 48hrs. 19 Mar: rockets wounded 3 in northern Israel; a projectile directly struck a building in Kiryat Shmona. 20 Mar: woman (70s) transported to hospital with moderate injuries after failing to reach shelter during missile alert.<br>
+        <span class="trend tr-down">↓ IRAN DECLINING</span> Iran missile tempo down ~90% from war peak — launcher attrition and stock depletion the primary drivers per US Admiral Brad Cooper. However, remaining missiles are <b>larger (1,000kg+ payloads)</b> — Iran has shifted from saturation to high-impact penetration strikes. Fewer but more destructive.
+      </div>
+    </li>
+    <li>
+      <div class="exec-cat">
+        <span class="exec-cat-title">Casualties (Israel, 48hrs)</span>
+        <span class="exec-cat-val red">0 killed &nbsp;·&nbsp; ~10 wounded</span>
+        <span class="exec-sub">Period total: 18 civilians killed · 3,750+ wounded</span>
+      </div>
+      <div class="exec-body">
+        <b>19 Mar:</b> No fatalities in Israel. 3 wounded in Kiryat Shmona (Hezbollah rocket, building hit directly). Multiple missile fragments caused property damage across northern Israel. Haifa refinery hit — no casualties. Fragments in Shfaram and Kiryat Ata (no injuries). <b>20 Mar (early):</b> Woman (70s) with moderate injuries while rushing to shelter (Rehovot area). Home in Rehovot damaged by falling missile fragments — missile piece found inside living room (MDA photo). No fatalities confirmed.<br>
+        <span class="trend tr-down">↓ LOWER CASUALTY TEMPO</span> No Israeli civilian fatalities in 48hrs — a notable improvement after 3 killed in previous 48hrs. However shelter non-compliance injuries continuing. Refinery hit demonstrates Iran's shift to infrastructure targeting is expanding inside Israel. Total war toll remains: 18 civilians + 2 soldiers killed.
+      </div>
+    </li>
+    <li>
+      <div class="exec-cat">
+        <span class="exec-cat-title">Peak attack hours</span>
+        <span class="exec-cat-val green">Distributed</span>
+        <span class="exec-sub">No single overnight surge · multiple daytime waves</span>
+      </div>
+      <div class="exec-body">
+        <b>19 Mar:</b> Iran launched 5 salvos at Jerusalem and northern Israel within a single hour during daylight hours — a reversal from the previous 01:00–05:00 pre-dawn pattern. Multiple daytime siren activations across central and northern Israel. <b>20 Mar:</b> Early morning alerts and fragment damage (Rehovot) suggest overnight barrage resumed.<br>
+        <span class="trend tr-stable">→ PATTERN SHIFTING</span> Pre-dawn surge (18–19 Mar) appears to have been a temporary tactical spike tied to Larijani revenge. Attack distribution returning to a mixed day/night tempo. However, the shift to daytime concentrated salvos (5 within 1 hour) is new — likely testing air-defence response cycles. Daytime strikes increase risk to civilians outdoors and at workplaces.
+      </div>
+    </li>
+    <li>
+      <div class="exec-cat">
+        <span class="exec-cat-title">Weapons &amp; targets</span>
+        <span class="exec-cat-val red">Infrastructure shift</span>
+        <span class="exec-sub">Haifa refinery hit · F-35 downed · 1,000kg+ payloads</span>
+      </div>
+      <div class="exec-body">
+        <b>Iran (19–20 Mar):</b> Haifa Bazan refinery hit by Iranian missile fragments — fire extinguished, no casualties, but additional infrastructure damage disclosed 20 Mar. Iran confirmed using missiles with 1,000kg+ payloads as of 10 Mar, shifting from saturation to precision. A US F-35 made emergency landing after apparent Iranian hit (pilot stable). Iran hit Qatar's Ras Laffan LNG (20% world supply), Kuwaiti refineries, Saudi facilities — regional energy war escalating.<br>
+        <b>Hezbollah (19 Mar):</b> Rockets + missiles directly struck building in Kiryat Shmona. 3 wounded. Standard rocket/UAV pattern continues — no new weapon types observed.<br>
+        <span class="trend tr-new">⚠ KEY SHIFT</span> Iran is now targeting Israeli energy infrastructure inside Israel (Haifa refinery) in retaliation for Israeli strike on South Pars gasfield. Netanyahu confirmed Israel "acted alone" on South Pars. Energy infrastructure attacks on both sides represent a significant escalation beyond the missile/population centre exchange. Trump has asked Israel to hold off on future energy strikes — Israel has agreed for now.
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- METRICS -->
+<div class="section">Period cumulative impact — 28 Feb to 20 Mar (Day 21)</div>
+<div class="g3">
+  <div class="metric"><div class="mlabel">Israeli civilians killed</div><div class="mval red">18</div><div class="munit">+ 2 soldiers = 20 total · no change 48hrs</div></div>
+  <div class="metric"><div class="mlabel">Israelis wounded</div><div class="mval amber">3,750+</div><div class="munit">updated 20 Mar · incl. shelter injuries</div></div>
+  <div class="metric"><div class="mlabel">Displaced</div><div class="mval blue">3,000+</div><div class="munit">central Israel · no formal camps</div></div>
+</div>
+<div class="g3">
+  <div class="metric"><div class="mlabel">Iran missile rate vs Day 1</div><div class="mval green">&#8209;90%</div><div class="munit">CENTCOM · launcher attrition + stock depletion</div></div>
+  <div class="metric"><div class="mlabel">Iranian missile payload</div><div class="mval amber">1,000kg+</div><div class="munit">shift to high-impact penetration as of 10 Mar</div></div>
+  <div class="metric"><div class="mlabel">Cluster MRV fatality days</div><div class="mval amber">3</div><div class="munit">10 Mar · 18 Mar · 19 Mar · none 20 Mar</div></div>
+</div>
+
+<!-- KEY DEVELOPMENTS -->
+<div class="section">Key developments snapshot — 20 March 2026</div>
+<div class="g2">
+  <div class="dev-card">
+    <div class="dev-top"><span style="font-size:14px">🎯</span><span class="dev-label">Military &amp; ceasefire signals</span><span class="dev-status ds-amber">Active · war-ending signals</span></div>
+    <div class="dev-body">
+      <b>Netanyahu press conference (19 Mar):</b> "This war is ending a lot faster than people think" · "We are winning and Iran is being decimated" · Iran "no longer able to enrich uranium or build ballistic missiles" · Denied dragging US into war · Confirmed Israel acted alone on South Pars strike · Says Trump asked Israel to hold off future energy attacks; Israel complying.<br>
+      <b>F-35 emergency landing (19 Mar):</b> US F-35 hit by Iranian fire, emergency landing at US base in Middle East · Pilot stable · Under investigation · First confirmed hit on US aircraft.<br>
+      <b>Iran missile rate:</b> Down 90% from Day 1 · Analysts: launcher destruction + stock depletion · Remaining missiles larger and more accurate.<br>
+      <b>Arab/Islamic ministers:</b> Called on Iran to cease attacks and affirmed right of states to defend themselves · European leaders urged ceasefire negotiations · UK sending military planners to help reopen Strait of Hormuz.
+    </div>
+  </div>
+  <div class="dev-card">
+    <div class="dev-top"><span style="font-size:14px">🏭</span><span class="dev-label">Energy &amp; infrastructure</span><span class="dev-status ds-red">Haifa refinery hit · regional energy war</span></div>
+    <div class="dev-body">
+      <b>Haifa Bazan refinery (19–20 Mar NEW):</b> Hit by Iranian missile fragments 19 Mar · Fire extinguished, no casualties · 20 Mar: refinery disclosed additional damage to "exterior infrastructure essential to activities" — takes "a few days" to restore · Most production active · Energy Minister said initially "no significant damage" — now revised.<br>
+      <b>Regional energy escalation:</b> Iran hit Qatar's Ras Laffan LNG (20% world supply), Kuwait refineries, Saudi facilities · IRGC threatens to destroy Gulf energy sectors · Brent crude $115–116/bbl · EU gas +24%.<br>
+      <b>US response:</b> Trump considering "bigger interventions" on energy prices · US dropped 5,000lb bunker busters on Iranian missile sites near Strait of Hormuz (17 Mar) · UK sending military planners to help reopen Strait.
+    </div>
+  </div>
+  <div class="dev-card">
+    <div class="dev-top"><span style="font-size:14px">✈️</span><span class="dev-label">Travel &amp; airspace</span><span class="dev-status ds-amber">Israeli carriers only · intl. suspended</span></div>
+    <div class="dev-body">
+      <b>Operating:</b> El Al (~20% schedule, fares +16%), Arkia, Air Haifa · Israir cancelled all flights to 31 Mar.<br>
+      <b>Suspended:</b> American Airlines to 23 Apr+ · Wizz Air to 7 Apr · BA to 1 Jun · United to 15 Jun+ · EasyJet to October · Delta, Lufthansa — no dates · Air France earliest 26 Mar.<br>
+      <b>EASA CZIB:</b> Expired 18 Mar — renewal expected imminently.<br>
+      <b>Ceasefire / resumption:</b> Full international resumption requires formal end-of-hostilities + security clearance. Netanyahu signals war "ending faster than people think" — watch for imminent ceasefire signals.
+    </div>
+  </div>
+  <div class="dev-card">
+    <div class="dev-top"><span style="font-size:14px">🏫</span><span class="dev-label">HFC, rail &amp; economy</span><span class="dev-status ds-amber">Full activity · infrastructure stress</span></div>
+    <div class="dev-body">
+      <b>HFC (20 Mar):</b> Full activity maintained · Schools open where shelter reachable · North: Hezbollah fire restrictions · Permitted to exit protected spaces.<br>
+      <b>Rail:</b> Tel Aviv Savidor Central still suspended (shrapnel damage 18 Mar) · Shuttles: Herzliya–TLV–Ben Gurion Airport.<br>
+      <b>Economy:</b> Brent crude $115–116/bbl · EU gas +24% · Knesset voting NIS 32B supplemental defence + deficit ceiling to 5.1% GDP · El Al competition authority probe · Pentagon $200B+ war funding request to White House.<br>
+      <b>Eid al-Fitr:</b> Today is the first day of Eid al-Fitr — potential for reduced Iranian operational tempo or, conversely, symbolically timed escalation.
+    </div>
+  </div>
+</div>
+
+<!-- NORMALISATION -->
+<div class="section">Normalisation indicators — 20 March 2026</div>
+<div class="card">
+  <div class="norm-row"><span class="norm-indicator">Schools — most areas</span><span class="badge b-green" style="flex-shrink:0;margin-right:8px">Open</span><span class="norm-val">HFC full activity. Open where shelter reachable. North border excluded (Hezbollah fire, Kiryat Shmona struck 19 Mar).</span></div>
+  <div class="norm-row"><span class="norm-indicator">Workplaces</span><span class="badge b-green" style="flex-shrink:0;margin-right:8px">Open nationwide</span><span class="norm-val">No national restrictions. Daytime siren activations increasing. Shelter compliance at workplaces critical.</span></div>
+  <div class="norm-row"><span class="norm-indicator">Tel Aviv rail</span><span class="badge b-red" style="flex-shrink:0;margin-right:8px">Savidor suspended</span><span class="norm-val">Shrapnel damage (18 Mar). Trains suspended. Shuttle: Herzliya–TLV–Ben Gurion running.</span></div>
+  <div class="norm-row"><span class="norm-indicator">Haifa refinery <span class="new-tag">NEW</span></span><span class="badge b-amber" style="flex-shrink:0;margin-right:8px">Partial — days to restore</span><span class="norm-val">Bazan refinery hit 19 Mar. Additional damage disclosed 20 Mar. Most production active. Restoration: "a few days."</span></div>
+  <div class="norm-row"><span class="norm-indicator">El Al</span><span class="badge b-amber" style="flex-shrink:0;margin-right:8px">~20% schedule</span><span class="norm-val">Operating limited schedule. Fares +16%. Competition authority probe. General sales open.</span></div>
+  <div class="norm-row"><span class="norm-indicator">Israir</span><span class="badge b-red" style="flex-shrink:0;margin-right:8px">All flights to 31 Mar</span><span class="norm-val">All scheduled flights cancelled through end of March.</span></div>
+  <div class="norm-row"><span class="norm-indicator">American Airlines</span><span class="badge b-red" style="flex-shrink:0;margin-right:8px">To 23 Apr+</span><span class="norm-val">Extended return to at least 23 April 2026.</span></div>
+  <div class="norm-row"><span class="norm-indicator">United Airlines</span><span class="badge b-red" style="flex-shrink:0;margin-right:8px">To 15 Jun+</span><span class="norm-val">Longest current US carrier suspension.</span></div>
+  <div class="norm-row"><span class="norm-indicator">Other intl. carriers</span><span class="badge b-red" style="flex-shrink:0;margin-right:8px">Suspended</span><span class="norm-val">Wizz Air to 7 Apr · BA to 1 Jun · EasyJet to October · Air France earliest 26 Mar · Delta, Lufthansa — no dates.</span></div>
+  <div class="norm-row"><span class="norm-indicator">EASA CZIB</span><span class="badge b-amber" style="flex-shrink:0;margin-right:8px">Expired — renewal imminent</span><span class="norm-val">CZIB 2026-03 expired 18 Mar. Covers 11 countries. Renewal expected. Watch for updated restrictions.</span></div>
+  <div class="norm-row"><span class="norm-indicator">Iran fire tempo</span><span class="badge b-green" style="flex-shrink:0;margin-right:8px">Down 90% from peak</span><span class="norm-val">CENTCOM/JINSA: 90% reduction from Day 1. Remaining missiles larger (1,000kg+). Infrastructure targeting expanding.</span></div>
+  <div class="norm-row"><span class="norm-indicator">Ceasefire prospects <span class="new-tag">NEW</span></span><span class="badge b-amber" style="flex-shrink:0;margin-right:8px">Netanyahu: ending soon</span><span class="norm-val">Netanyahu: war "ending a lot faster than people think." Trump 4-week timetable nearing end. Iran FM signals openness. No framework agreed yet.</span></div>
+</div>
+
+<!-- CHARTS -->
+<div class="section">Attack waves per day — Iran vs Hezbollah (28 Feb – 20 Mar)</div>
+<div class="card">
+  <div class="ctitle">Daily attack waves on Israel (stacked by actor)</div>
+  <div class="csub">Hover over bars for munition breakdown. Note Iran rate decline from Day 1. * 20 Mar = partial day.</div>
+  <div class="legend">
+    <span class="leg"><span class="ld" style="background:#185FA5"></span>Iran</span>
+    <span class="leg"><span class="ld" style="background:#C43A3A"></span>Hezbollah</span>
+  </div>
+  <div class="scroll-x"><div style="min-width:820px;position:relative;height:240px"><canvas id="dailyChart"></canvas></div></div>
+</div>
+
+<div class="section">Daily interception rate — Iran vs Hezbollah (28 Feb – 20 Mar)</div>
+<div class="card">
+  <div class="ctitle">Neutralisation rate by day &amp; actor (%)</div>
+  <div class="csub">★ = significant civilian impact despite high interception. Note: cluster MRVs scatter sub-munitions regardless of intercept altitude.</div>
+  <div class="legend">
+    <span class="leg"><span class="ld" style="background:#185FA5;border-radius:50%"></span>Iran</span>
+    <span class="leg"><span class="ld" style="background:#C43A3A;border-radius:50%"></span>Hezbollah</span>
+  </div>
+  <div class="scroll-x"><div style="min-width:820px;position:relative;height:220px"><canvas id="neutChart"></canvas></div></div>
+  <div class="chart-note">★ 1 Mar Beit Shemesh 9 killed &nbsp;·&nbsp; ★ 4 Mar Hzb peak &nbsp;·&nbsp; ★ 9 Mar Fateh-110 Ramla &nbsp;·&nbsp; ★ 10 Mar 2 killed ~200 wounded &nbsp;·&nbsp; ★ 13 Mar Zarzir ~60 wounded &nbsp;·&nbsp; ★ 18 Mar 2 killed Ramat Gan &nbsp;·&nbsp; ★ 19 Mar foreign worker killed Moshav Adanim &nbsp;·&nbsp; ★ 19 Mar Haifa refinery hit &nbsp;·&nbsp; ★ 19 Mar Kiryat Shmona building struck</div>
+</div>
+
+<!-- MAP -->
+<div class="section">Strike impact map — Israel (28 Feb – 20 Mar 2026)</div>
+<div class="card" style="padding:1rem 1.2rem">
+  <div class="ctitle">Strike locations — direct warhead impacts vs intercept debris &amp; indirect</div>
+  <div class="csub">Scroll/pinch to zoom · drag to pan · click any marker for detail. Map is geographically accurate. Zoom in on central Israel cluster for individual incidents.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--text2);margin-bottom:10px">
+    <span style="display:flex;align-items:center;gap:5px"><svg width="13" height="13"><circle cx="6.5" cy="6.5" r="5.5" fill="#C43A3A" opacity=".85"/></svg>Direct warhead impact</span>
+    <span style="display:flex;align-items:center;gap:5px"><svg width="13" height="13"><circle cx="6.5" cy="6.5" r="5.5" fill="#BA7517" opacity=".8"/></svg>Intercept debris / indirect</span>
+    <span style="display:flex;align-items:center;gap:5px"><svg width="15" height="15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="#C43A3A" stroke-width="1.5" stroke-dasharray="3 2"/></svg>Fatality confirmed</span>
+    <span style="font-size:10px;color:var(--text3)">Number inside large dot = confirmed killed</span>
+  </div>
+  <div class="map-outer">
+    <div class="map-hint">Scroll to zoom &nbsp;·&nbsp; drag to pan &nbsp;·&nbsp; click markers for detail</div>
+    <div class="map-viewport" id="mapVP">
+      <div class="map-canvas" id="mapCanvas">
+        <svg id="mapSvg" width="560" height="860" viewBox="0 0 560 860" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="narr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#5a7a8e" stroke-width="1.5"/>
+            </marker>
+          </defs>
+          <rect width="560" height="860" fill="#c8dce8"/>
+          <rect x="490" y="0" width="70" height="860" fill="#ddd5c5"/>
+          <text x="525" y="400" font-size="11" fill="#9a9282" text-anchor="middle" transform="rotate(-90,525,400)">Jordan</text>
+          <polygon points="0,720 160,720 130,860 0,860" fill="#ddd5c5"/>
+          <text x="55" y="800" font-size="10" fill="#9a9282">Egypt</text>
+          <rect x="0" y="0" width="560" height="25" fill="#e0d8c8" opacity=".6"/>
+          <text x="200" y="17" font-size="9" fill="#9a9282" text-anchor="middle">Lebanon</text>
+          <line x1="0" y1="25" x2="490" y2="25" stroke="#b0a490" stroke-width="1" stroke-dasharray="5 4"/>
+          <!-- Israel main land -->
+          <path d="M47 25 L130 25 L175 28 L220 35 L280 45 L335 55 L368 72 L390 100 L400 128 L400 148 L392 165 L380 178 L406 190 L430 210 L445 235 L450 262 L448 288 L440 312 L442 340 L444 368 L444 395 L438 420 L426 440 L410 458 L392 472 L375 488 L358 508 L340 528 L322 550 L304 572 L286 594 L268 616 L250 638 L232 660 L214 682 L196 704 L178 726 L162 748 L148 770 L136 792 L126 814 L118 838 L114 860 L30 860 L26 830 L20 795 L15 755 L12 715 L10 675 L8 635 L8 595 L10 555 L14 515 L20 475 L28 438 L38 402 L50 368 L64 334 L78 302 L92 272 L106 245 L120 220 L132 198 L140 178 L142 156 L138 135 L132 114 L132 92 L138 68 L150 48 L168 32 Z" fill="#f0ece3" stroke="#b0a898" stroke-width="1.2"/>
+          <!-- Negev tint -->
+          <path d="M138 600 L286 594 L268 640 L248 680 L226 710 L200 740 L176 766 L152 792 L130 816 L118 838 L114 860 L30 860 L26 830 L20 795 L15 755 L12 715 L10 675 L8 635 L30 620 Z" fill="#e8dfc8" opacity=".55"/>
+          <!-- West Bank -->
+          <path d="M340 190 L355 180 L372 185 L392 198 L406 218 L418 240 L425 265 L428 290 L420 315 L405 335 L388 348 L368 355 L348 352 L332 340 L320 322 L314 300 L316 275 L322 252 L330 232 L336 212 Z" fill="#e4ddd2" stroke="#9a9080" stroke-width="0.8" stroke-dasharray="4 3"/>
+          <text x="375" y="278" text-anchor="middle" font-size="10" fill="#857d72" font-style="italic">West Bank</text>
+          <!-- Gaza -->
+          <path d="M55 490 L72 482 L85 484 L90 498 L92 516 L94 538 L90 558 L80 568 L66 570 L52 562 L46 546 L44 524 L46 506 Z" fill="#ddd8cc" stroke="#9a9080" stroke-width="0.8" stroke-dasharray="3 3"/>
+          <text x="69" y="528" text-anchor="middle" font-size="9" fill="#857d72">Gaza</text>
+          <!-- Golan -->
+          <path d="M368 72 L390 62 L420 68 L450 82 L462 104 L458 128 L446 148 L430 158 L406 160 L392 148 L380 130 L378 108 L370 88 Z" fill="#e5dfd5" stroke="#9a9080" stroke-width="0.7" stroke-dasharray="4 3"/>
+          <text x="422" y="114" text-anchor="middle" font-size="9" fill="#857d72">Golan</text>
+          <!-- Dead Sea -->
+          <ellipse cx="452" cy="408" rx="10" ry="28" fill="#a8c8d8" opacity=".85"/>
+          <text x="468" y="410" font-size="8" fill="#5a7a8e" font-style="italic">Dead Sea</text>
+          <!-- Sea of Galilee -->
+          <ellipse cx="406" cy="178" rx="14" ry="22" fill="#a8c8d8" opacity=".85"/>
+          <text x="426" y="180" font-size="8" fill="#5a7a8e" font-style="italic">Sea of Galilee</text>
+          <!-- Jordan River -->
+          <path d="M406 156 Q415 200 428 248 Q438 295 445 345 Q450 380 452 408" stroke="#a8c8d8" stroke-width="2" fill="none" opacity=".5"/>
+          <!-- City dots -->
+          <circle cx="218" cy="284" r="4" fill="rgba(80,70,50,0.4)"/>
+          <circle cx="374" cy="349" r="3.5" fill="rgba(80,70,50,0.35)"/>
+          <circle cx="294" cy="122" r="3.5" fill="rgba(80,70,50,0.35)"/>
+          <circle cx="225" cy="461" r="3" fill="rgba(80,70,50,0.3)"/>
+          <!-- City labels -->
+          <text x="226" y="281" font-size="11.5" font-weight="600" fill="#1a1a18">Tel Aviv</text>
+          <text x="255" y="269" font-size="9" fill="#6b6a64">Ramat Gan</text>
+          <text x="200" y="296" font-size="9" fill="#8a8880">Jaffa</text>
+          <text x="192" y="244" font-size="9" fill="#8a8880">Herzliya</text>
+          <text x="195" y="228" font-size="9" fill="#8a8880">Hod HaSharon</text>
+          <text x="188" y="310" font-size="9" fill="#8a8880">Holon</text>
+          <text x="195" y="324" font-size="9" fill="#8a8880">Bat Yam</text>
+          <text x="258" y="292" font-size="9" fill="#8a8880">Petah Tikva</text>
+          <text x="258" y="308" font-size="9" fill="#8a8880">Bnei Brak</text>
+          <text x="195" y="338" font-size="9" fill="#8a8880">Rishon LeZion</text>
+          <text x="265" y="358" font-size="9" fill="#8a8880">Ramla</text>
+          <text x="270" y="342" font-size="9" fill="#8a8880">Yehud</text>
+          <text x="252" y="376" font-size="9" fill="#8a8880">Rehovot</text>
+          <text x="268" y="325" font-size="9" fill="#8a8880">Shoham</text>
+          <text x="178" y="358" font-size="9" fill="#8a8880">Ashdod</text>
+          <text x="178" y="374" font-size="9" fill="#8a8880">Ashkelon</text>
+          <text x="378" y="346" font-size="10.5" fill="#6b6a64">Jerusalem</text>
+          <text x="310" y="365" font-size="9" fill="#8a8880">Beit Shemesh</text>
+          <text x="228" y="458" font-size="9" fill="#8a8880">Be'er Sheva</text>
+          <text x="298" y="118" font-size="10" fill="#6b6a64">Haifa</text>
+          <text x="336" y="79" font-size="9" fill="#8a8880">Nahariya</text>
+          <text x="338" y="60" font-size="9" fill="#8a8880">Kiryat Shmona</text>
+          <text x="360" y="47" font-size="9" fill="#8a8880">Kfar Yuval</text>
+          <text x="408" y="141" font-size="9" fill="#8a8880">Zarzir</text>
+          <text x="340" y="376" font-size="9" fill="#857d72">Beit Awwa</text>
+          <text x="50" y="320" font-size="10.5" fill="#5a7a8e" font-style="italic" transform="rotate(-75,50,320)">Mediterranean</text>
+          <!-- Compass -->
+          <text x="518" y="72" font-size="12" fill="#5a7a8e" text-anchor="middle" font-weight="600">N</text>
+          <line x1="518" y1="78" x2="518" y2="98" stroke="#5a7a8e" stroke-width="1.5" marker-end="url(#narr)"/>
+          <!-- Scale bar -->
+          <line x1="440" y1="820" x2="530" y2="820" stroke="#5a7a8e" stroke-width="1.5"/>
+          <line x1="440" y1="815" x2="440" y2="825" stroke="#5a7a8e" stroke-width="1.5"/>
+          <line x1="530" y1="815" x2="530" y2="825" stroke="#5a7a8e" stroke-width="1.5"/>
+          <line x1="485" y1="815" x2="485" y2="825" stroke="#5a7a8e" stroke-width="1"/>
+          <text x="485" y="840" font-size="10" fill="#5a7a8e" text-anchor="middle">50 km</text>
+          <text x="441" y="840" font-size="9" fill="#5a7a8e" text-anchor="start">0</text>
+          <text x="529" y="840" font-size="9" fill="#5a7a8e" text-anchor="end">100</text>
+          <g id="mapMarkers"></g>
+        </svg>
+      </div>
+    </div>
+    <div class="map-controls">
+      <button class="map-btn" id="zoomIn">+</button>
+      <button class="map-btn" id="zoomOut">&#8722;</button>
+      <button class="map-btn" id="resetView" style="font-size:15px">&#8962;</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACT TABLES -->
+<div class="section">Impact analysis — direct hits vs interception debris &amp; shrapnel</div>
+<div class="card">
+  <div class="key-legend">
+    <span><span class="key-swatch" style="background:rgba(196,58,58,0.15);border:1px solid rgba(196,58,58,0.3)"></span>Red = fatalities</span>
+    <span><span class="key-swatch" style="background:rgba(186,117,23,0.1);border:1px solid rgba(186,117,23,0.25)"></span>Orange = 20+ wounded</span>
+    <span style="color:var(--text3);font-size:10px">&#9658; Click any row to expand</span>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('direct',this)">Direct warhead impacts</button>
+    <button class="tab-btn" onclick="switchTab('indirect',this)">Intercept debris &amp; indirect</button>
+  </div>
+  <div id="pane-direct" class="tab-pane active">
+    <table><thead><tr><th style="width:13%">Date</th><th style="width:22%">Location</th><th style="width:27%">Munition</th><th>Casualties</th><th style="width:22px"></th></tr></thead>
+    <tbody id="directTbody"></tbody></table>
+  </div>
+  <div id="pane-indirect" class="tab-pane">
+    <table><thead><tr><th style="width:13%">Date</th><th style="width:25%">Location</th><th>Impact summary</th><th style="width:22px"></th></tr></thead>
+    <tbody id="indirectTbody"></tbody></table>
+  </div>
+</div>
+
+<div id="mapTip"></div>
+
+<div class="footer">
+  <b>Sources:</b> IDF Spokesperson · Times of Israel liveblog (19–20 Mar) · Al Jazeera tracker (20 Mar) · CNN Day 20 live (19 Mar) · Haaretz (20 Mar) · Wikipedia 2026 Iran war / 2026 Iranian strikes on Israel · NBC News · ACLED Middle East Special Issue March 2026 · Magen David Adom · Bazan Group regulatory filing (20 Mar) · CENTCOM statements · JINSA analysis · Ops.Group MEAREP · EASA CZIB 2026-03 · Flightradar24 · DansDeals (20 Mar).<br>
+  <b>Casualty reconciliation:</b> 9 (Beit Shemesh 1 Mar) + 2 (Yehud 2 Mar) + 1 (Oren Katz 2 Mar) + 2 (Tel Aviv 10 Mar) + 2 (Ramat Gan 18 Mar) + 1 (Moshav Adanim 19 Mar) = 17 direct + 1 indirect (102yr-old shelter fall) = <b>18 Israeli civilians</b>. West Bank (Beit Awwa 19 Mar, 3 women) not included. Open source only. Does not constitute classified or official government analysis.
+</div>
+
+</div>
+<script>
+var dark=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+var gc=dark?'rgba(200,198,190,0.1)':'rgba(120,118,110,0.1)';
+var tc=dark?'#a8a69e':'#6b6a64';
+
+var mun={
+  iran:[[25,20,0],[20,18,0],[10,8,0],[8,6,0],[7,6,0],[6,5,0],[6,5,0],[5,5,0],[5,5,0],[5,5,0],[4,4,2],[4,4,1],[5,4,1],[5,4,1],[4,4,1],[4,4,1],[4,4,1],[4,4,1],[3,6,1],[3,5,1],[4,5,1]],
+  hzb:[[0,0,0],[0,0,0],[9,3,0],[16,7,0],[34,13,0],[15,6,0],[30,13,0],[33,13,0],[22,9,0],[23,8,1],[24,9,1],[25,8,1],[22,7,1],[20,7,1],[20,7,1],[20,7,1],[20,7,1],[32,9,2],[14,7,1],[15,7,1],[12,7,1]]
+};
+var days=[['28 Feb',45,0],['1 Mar',38,0],['2 Mar',18,12],['3 Mar',14,23],['4 Mar',13,47],['5 Mar',11,21],['6 Mar',11,43],['7 Mar',10,46],['8 Mar',10,31],['9 Mar',10,32],['10 Mar',10,34],['11 Mar',9,34],['12 Mar',10,30],['13 Mar',10,28],['14 Mar',9,28],['15 Mar',9,28],['16 Mar',9,28],['17 Mar',11,43],['18 Mar',9,22],['19 Mar',13,22],['20 Mar*',8,19]];
+new Chart(document.getElementById('dailyChart'),{type:'bar',data:{labels:days.map(function(d){return d[0]}),datasets:[{label:'Iran',data:days.map(function(d){return d[1]}),backgroundColor:'#185FA5',borderRadius:2,stack:'s'},{label:'Hezbollah',data:days.map(function(d){return d[2]}),backgroundColor:'#C43A3A',borderRadius:2,stack:'s'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',callbacks:{afterBody:function(it){var i=it[0].dataIndex,im=mun.iran[i],hm=mun.hzb[i],l=['─────────────','Munition breakdown:'];if(days[i][1]>0){l.push('Iran:');if(im[0]>0)l.push('  Ballistic (standard): '+im[0]);if(im[1]>0)l.push('  Ballistic (cluster MRV): '+im[1]);if(im[2]>0)l.push('  Drones (Shahed): '+im[2]);}if(days[i][2]>0){l.push('Hezbollah:');if(hm[0]>0)l.push('  Rockets & missiles: '+hm[0]);if(hm[1]>0)l.push('  UAVs: '+hm[1]);if(hm[2]>0)l.push('  Anti-tank: '+hm[2]);}return l;}}}},scales:{x:{stacked:true,ticks:{font:{size:10},color:tc,autoSkip:false,maxRotation:45},grid:{display:false}},y:{stacked:true,ticks:{font:{size:10},color:tc},grid:{color:gc},title:{display:true,text:'Waves',font:{size:10},color:tc}}}}});
+
+var nD=['28 Feb','1 Mar','2 Mar','3 Mar','4 Mar','5 Mar','6 Mar','7 Mar','8 Mar','9 Mar','10 Mar','11 Mar','12 Mar','13 Mar','14 Mar','15 Mar','16 Mar','17 Mar','18 Mar','19 Mar','20 Mar*'];
+var iR=[91,84,90,91,90,94,91,94,93,90,80,90,90,88,92,92,92,92,85,83,90];
+var hR=[null,null,83,78,77,79,77,77,78,80,79,78,79,78,79,79,79,79,79,79,82];
+var sI=[1,4,8,9,12,18,19,20];
+new Chart(document.getElementById('neutChart'),{type:'line',data:{labels:nD,datasets:[{label:'Iran intercept rate',data:iR,borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,0.07)',pointBackgroundColor:'#185FA5',pointRadius:iR.map(function(_,i){return sI.indexOf(i)>=0?6:3}),pointStyle:iR.map(function(_,i){return sI.indexOf(i)>=0?'star':'circle'}),tension:0.35,fill:false,borderWidth:2},{label:'Hezbollah intercept rate',data:hR,borderColor:'#C43A3A',backgroundColor:'rgba(196,58,58,0.07)',pointBackgroundColor:'#C43A3A',pointRadius:hR.map(function(v,i){return v===null?0:(sI.indexOf(i)>=0?6:3)}),pointStyle:hR.map(function(_,i){return sI.indexOf(i)>=0?'star':'circle'}),spanGaps:false,tension:0.35,fill:false,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',callbacks:{label:function(ctx){return ' '+ctx.dataset.label+': '+(ctx.parsed.y===null?'n/a':ctx.parsed.y+'%')}}}},scales:{x:{ticks:{font:{size:10},color:tc,autoSkip:false,maxRotation:45},grid:{display:false}},y:{min:70,max:100,ticks:{font:{size:10},color:tc,callback:function(v){return v+'%'}},grid:{color:gc},title:{display:true,text:'Intercept %',font:{size:10},color:tc}}}}});
+
+function switchTab(id,btn){document.querySelectorAll('.tab-pane').forEach(function(p){p.classList.remove('active')});document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});document.getElementById('pane-'+id).classList.add('active');btn.classList.add('active');}
+
+// ═══ SINGLE DATA SOURCE ═══
+var directRows=[
+  {date:'28 Feb',loc:'Tel Aviv area',mun:'Ballistic / cluster MRV',cas:'~20 wounded · fires',fatal:false,mass:true,mx:218,my:280,ms:10,detail:'Opening day. Cluster MRV sub-munitions across central Israel. Fires in Rishon LeZion and Bat Yam. No fatalities from direct hits this day.'},
+  {date:'1 Mar',loc:'Beit Shemesh',mun:'Ballistic missile (direct warhead)',cas:'9 killed · 20+ wounded',fatal:true,mass:true,mx:298,my:358,ms:22,detail:'Direct warhead detonation on residential building near synagogue shelter. 9 killed including 3 children. Deadliest single strike. Accounts for 9 of 18 civilian deaths.'},
+  {date:'1 Mar',loc:'Jerusalem area',mun:'Ballistic missile',cas:'6 wounded (road/vehicle)',fatal:false,mass:false,mx:374,my:349,ms:9,detail:'Missile struck a highway near Jerusalem. 6 wounded. Roads briefly closed for EOD.'},
+  {date:'2 Mar',loc:'Yehud (central)',mun:'Cluster sub-munition (ground scatter)',cas:'2 construction workers killed',fatal:true,mass:false,mx:272,my:337,ms:13,detail:'Two construction workers killed by cluster bomb sub-munitions outdoors in Yehud. Not in shelter. ACLED-confirmed. Accounts for 2 of 18 civilian deaths.'},
+  {date:'2 Mar',loc:'Central Israel',mun:'Ballistic missile',cas:'1 killed (Oren Katz) · injuries',fatal:true,mass:false,mx:224,my:272,ms:12,detail:'Direct strike in residential area. Oren Katz confirmed killed. Accounts for 1 of 18 civilian deaths.'},
+  {date:'3 Mar',loc:'Kfar Yuval (north)',mun:'Hezbollah rocket',cas:'Residential home hit · no fatalities',fatal:false,mass:false,mx:370,my:46,ms:8,detail:'Katyusha-type rocket struck residential home near Lebanese border. Structure destroyed. Occupants evacuated. No fatalities.'},
+  {date:'4 Mar',loc:'Haifa corridor',mun:'Hezbollah rockets',cas:'Property damage · burns · no fatalities',fatal:false,mass:false,mx:294,my:122,ms:9,detail:'Multiple rockets in Haifa corridor during peak Hezbollah day (47 waves). Cars alight. Burns. Iron Dome failed on 3 rockets.'},
+  {date:'9 Mar',loc:'Ramla — kindergarten',mun:'Hezbollah Fateh-110 precision missile',cas:'6 injured · no child fatalities',fatal:false,mass:false,mx:278,my:356,ms:10,detail:'Fateh-110 (350km, 500kg warhead) — first Hezbollah use against central Israel. Kindergarten struck. School closed. 6 adults injured.'},
+  {date:'9 Mar',loc:'Bat Yam (central)',mun:'Iranian ballistic missile',cas:'Building impact · 181 injured this day',fatal:false,mass:true,mx:196,my:320,ms:14,detail:'Ballistic missile struck 6-storey residential building in Bat Yam. Upper floors damaged. Part of 181 casualties this day.'},
+  {date:'10 Mar',loc:'Tel Aviv area',mun:'Ballistic MRV (cluster warhead)',cas:'2 killed · ~200 wounded',fatal:true,mass:true,mx:212,my:274,ms:20,detail:'Cluster MRV detonated over Tel Aviv metro at ~400m. 2 killed at bus stop. ~200 treated at hospitals. Highest single-day count since Beit Shemesh. Accounts for 2 of 18 civilian deaths.'},
+  {date:'12 Mar',loc:'Central Israel',mun:'Hezbollah rocket',cas:'16 wounded incl. daycare',fatal:false,mass:false,mx:234,my:295,ms:9,detail:'Hezbollah rocket near a daycare. Daycare evacuated 40 mins prior. 16 wounded — 2 seriously.'},
+  {date:'13 Mar',loc:'Zarzir (north)',mun:'Ballistic — partial intercept',cas:'~60 wounded · dozens of homes',fatal:false,mass:true,mx:404,my:144,ms:17,detail:'Partially-intercepted Iranian ballistic missile — warhead intact on impact. ~60 wounded. 34 homes damaged. Confirmed by IDF investigation.'},
+  {date:'13 Mar',loc:'Shoham / Rishon Lezion',mun:'Cluster sub-munitions (intercept scatter)',cas:'Roof fire · vehicles · minor injuries',fatal:false,mass:false,mx:264,my:328,ms:9,detail:'Sub-munitions from intercepted cluster warhead. Roof fire. 3 vehicles destroyed. 5 minor injuries.'},
+  {date:'15 Mar',loc:'Holon (central)',mun:'Ballistic missile (partial intercept)',cas:'Building hit · 8 lightly injured',fatal:false,mass:false,mx:192,my:306,ms:9,detail:'Partially intercepted ballistic missile struck residential block in Holon. 2 floors damaged. 8 lightly injured.'},
+  {date:'16 Mar',loc:'Central Israel (multiple)',mun:'Ballistic missiles + cluster MRVs',cas:'4 wounded · debris fires',fatal:false,mass:false,mx:220,my:283,ms:9,detail:'Overnight sirens. Fires from debris in Holon. Fragments in Jerusalem and Safed. 4 wounded northern Israel.'},
+  {date:'17 Mar',loc:'Nahariya (north)',mun:'Hezbollah rocket',cas:'1 man wounded',fatal:false,mass:false,mx:334,my:81,ms:8,detail:'Hezbollah claimed attack on Nahariya. 1 man wounded confirmed.'},
+  {date:'18 Mar',loc:'Ramat Gan (central)',mun:'Ballistic cluster warhead — IRGC revenge',cas:'2 killed (couple, 70s) · 5 wounded',fatal:true,mass:false,mx:242,my:264,ms:16,detail:'IRGC stated revenge for Larijani. Cluster missiles overnight. Couple (70s) killed in Ramat Gan — confirmed not in shelter. 5 wounded (Kafr Qasem, Petah Tikva, Bnei Brak). MDA vehicle struck. 34 fire sites. Accounts for 2 of 18 civilian deaths.'},
+  {date:'19 Mar',loc:'Moshav Adanim (Sharon)',mun:'Cluster bomb — overnight barrage',cas:'1 foreign worker killed (30)',fatal:true,mass:false,mx:236,my:248,ms:14,detail:'Foreign worker (30) killed by cluster bomb shrapnel at Moshav Adanim near Hod HaSharon. Part of 6 overnight Iran barrages. Multiple other cluster impacts central Israel. Accounts for 1 of 18 civilian deaths.'},
+  {date:'19 Mar',loc:'Haifa — Bazan refinery',mun:'Iranian ballistic missile (fragment)',cas:'No casualties · fire extinguished',fatal:false,mass:false,mx:294,my:118,ms:11,detail:'Bazan Group (BAZAN) oil refinery in Haifa hit by fragments from Iranian missile interception. Fire extinguished by 12 fire/rescue teams. No casualties, no hazardous leaks. On 20 Mar, refinery disclosed additional damage to exterior infrastructure requiring "a few days" to restore. Most production active. Iran\'s retaliation for Israeli strike on South Pars gasfield.'},
+  {date:'19 Mar',loc:'Kiryat Shmona (north)',mun:'Hezbollah rocket',cas:'3 wounded · building struck directly',fatal:false,mass:false,mx:348,my:58,ms:11,detail:'Hezbollah rockets fired at northern Israel. A projectile directly struck a building in Kiryat Shmona. 3 wounded according to Israeli emergency services and local authorities. Rockets also fired at surrounding communities.'},
+  {date:'20 Mar',loc:'Rehovot (central)',mun:'Iranian ballistic missile fragment',cas:'Home damaged · no injuries',fatal:false,mass:false,mx:246,my:370,ms:9,detail:'Falling missile fragments caused damage to a home in Rehovot. A piece of the missile was photographed inside the living room (MDA photo). No injuries reported. Woman in her 70s treated for moderate injuries while rushing to shelter during associated missile alert — shelter-related injury. Police and rescue services combing multiple impact sites in northern Israel same morning.'},
+];
+
+var indirectRows=[
+  {date:'28 Feb',loc:'Central Israel',summary:'Intercept debris fires · panic injuries',fatal:false,mass:false,mx:215,my:282,ms:9,detail:'Intercept debris caused multiple fires. Fire services at 23 sites. ~80 treated for anxiety and minor injuries.'},
+  {date:'28\u20131 Mar',loc:'Ramat Gan',summary:'102yr-old dies in shelter fall \u2014 sole indirect civilian death',fatal:true,mass:false,mx:248,my:262,ms:10,detail:'A 102-year-old man fell on stairs rushing to shelter during overnight sirens. Pronounced dead on arrival. Only indirect civilian death. Accounts for 1 of 18 civilian deaths.'},
+  {date:'1 Mar',loc:'Central Israel (multiple)',summary:'Cluster sub-munitions scatter · fires · 8km radius',fatal:false,mass:true,mx:220,my:285,ms:13,detail:'Intercepted cluster warheads dispersed sub-munitions. Fires in 5 districts. 48hr clearance. Up to 8km dispersion.'},
+  {date:'2 Mar',loc:'Northern Israel',summary:'Intercept debris · open area falls · no injuries',fatal:false,mass:false,mx:368,my:55,ms:7,detail:"Hezbollah first-day salvo fell in open land near Kfar Gil'adi. No injuries. EOD to 3 sites."},
+  {date:'5 Mar',loc:'Iksal (north)',summary:'Intercept debris · property damage · Fire &amp; Rescue',fatal:false,mass:false,mx:396,my:135,ms:7,detail:"Intercept debris from David's Sling kill. 2 vehicles destroyed. Roof damaged. No injuries."},
+  {date:'5 Mar',loc:'Ben Gurion Airport',summary:'Boarding chaos \u2014 pax cap changed overnight',fatal:false,mass:false,mx:254,my:345,ms:7,detail:'Transport Ministry changed pax cap 100\u2192200\u2192100 within 12 hrs. ~300 passengers denied boarding.'},
+  {date:'9 Mar',loc:'TLV airspace',summary:'El Al flight aborts landing · 40min hold',fatal:false,mass:false,mx:182,my:312,ms:7,detail:'El Al Boeing 737 aborted landing during Iranian missile wave. 40-minute hold over Mediterranean.'},
+  {date:'9 Mar',loc:'Nationwide',summary:'MoH: ~40% of 2,142 wounded this day are shelter-related',fatal:false,mass:true,mx:226,my:292,ms:13,detail:'~40% of 2,142 wounded this day injured rushing to shelters. MoH advisory issued.'},
+  {date:'11 Mar',loc:"Bi'ina (north)",summary:'2 wounded by intercept debris · 4 anxiety cases',fatal:false,mass:false,mx:380,my:155,ms:7,detail:"Two residents lightly wounded by intercept debris. Four treated for acute anxiety."},
+  {date:'13 Mar',loc:'Shoham / Rishon Lezion',summary:'Cluster sub-munitions scatter · roof fire · 6hr clearance',fatal:false,mass:false,mx:268,my:332,ms:7,detail:'Sub-munitions from intercepted cluster missile. Roof fire. 3 cars destroyed. 5 minor injuries. 6hr clearance.'},
+  {date:'13 Mar',loc:'Central Israel',summary:'Missile fragments spark fires · no injuries',fatal:false,mass:false,mx:222,my:290,ms:7,detail:'Fragments from 5th Iranian wave sparked three grass fires. Fire services responded. No injuries.'},
+  {date:'16 Mar',loc:'Holon / Jerusalem / Safed',summary:'Overnight intercept debris · fires · no casualties',fatal:false,mass:false,mx:192,my:308,ms:7,detail:'Debris fire in Holon. Fragments in Jerusalem and Safed. Arrow 3 casing confirmed. No casualties.'},
+  {date:'17 Mar',loc:'Central Israel',summary:'Intercepted ballistic missile · open area · no casualties',fatal:false,mass:false,mx:218,my:286,ms:7,detail:'Ballistic missile intercepted/landed in open area south of Tel Aviv. No casualties.'},
+  {date:'18 Mar',loc:'Ramat Gan / Holon / TLV Savidor',summary:'Cluster barrage debris: power line · trains · MDA vehicle',fatal:false,mass:true,mx:244,my:266,ms:13,detail:'Cluster munition downed power line Holon. Shrapnel struck Savidor Central station — trains suspended, shuttles running. MDA vehicle struck Bnei Brak. 34 fire deployments.'},
+  {date:'19 Mar',loc:'Shfaram / Kiryat Ata (north)',summary:'Missile fragment / interceptor debris · car damaged · no injuries',fatal:false,mass:false,mx:314,my:136,ms:7,detail:'Police and rescue services reported fragment from missile or interceptor landed in Shfaram causing damage but no injuries. In Kiryat Ata, fragment landed in open space damaging a car. IDF confirmed multiple impact sites across northern Israel during 19 Mar barrages.'},
+  {date:'19 Mar',loc:'Golan Heights',summary:'Iranian ballistic missile lodged in ground · no casualties',fatal:false,mass:false,mx:422,my:106,ms:7,detail:'Iranian ballistic missile photographed lodged in the ground in the Golan Heights after interception. Visible missile body intact. IDF EOD deployed. No casualties. Consistent with partial-intercept pattern observed at Zarzir 13 Mar.'},
+  {date:'20 Mar',loc:'Rehovot area',summary:'Woman (70s) moderate injuries rushing to shelter',fatal:false,mass:false,mx:248,my:372,ms:7,detail:'Woman in her 70s transported to hospital in central Israel with moderate injuries sustained while trying to reach a shelter during a series of missile alerts. Shelter non-compliance injury. Part of overnight barrage from Iran that also caused home damage in Rehovot (missile piece inside living room).'},
+];
+
+function buildTable(tbodyId,rows,isIndirect){
+  var tbody=document.getElementById(tbodyId);
+  rows.forEach(function(r,idx){
+    var rc=r.fatal?'hi-fatal':r.mass?'hi-mass':'';
+    var id=tbodyId+'-'+idx;
+    if(isIndirect){
+      tbody.innerHTML+='<tr class="row-trigger '+rc+'" onclick="toggleRow(\''+id+'\')"><td><span class="toggle-icon" id="icon-'+id+'">&#9658;</span>'+r.date+'</td><td>'+r.loc+'</td><td>'+(r.fatal?'<b>'+r.summary+'</b>':r.summary)+'</td><td></td></tr><tr class="row-detail" id="detail-'+id+'"><td colspan="4">'+r.detail+'</td></tr>';
+    }else{
+      tbody.innerHTML+='<tr class="row-trigger '+rc+'" onclick="toggleRow(\''+id+'\')"><td><span class="toggle-icon" id="icon-'+id+'">&#9658;</span>'+r.date+'</td><td>'+r.loc+'</td><td style="font-size:11px">'+r.mun+'</td><td style="font-size:11px">'+(r.fatal?'<b>'+r.cas+'</b>':r.cas)+'</td><td></td></tr><tr class="row-detail" id="detail-'+id+'"><td colspan="5">'+r.detail+'</td></tr>';
+    }
+  });
+}
+function toggleRow(id){var d=document.getElementById('detail-'+id);var ic=document.getElementById('icon-'+id);var o=d.classList.toggle('open');ic.classList.toggle('open',o);}
+buildTable('directTbody',directRows,false);
+buildTable('indirectTbody',indirectRows,true);
+
+// MAP
+var ns='http://www.w3.org/2000/svg';
+var mapG=document.getElementById('mapMarkers');
+var tip=document.getElementById('mapTip');
+
+function renderMarkers(rows,type){
+  rows.forEach(function(r){
+    var col=type==='direct'?'#C43A3A':'#BA7517';
+    var g=document.createElementNS(ns,'g');
+    g.style.cursor='pointer';
+    var x=r.mx,y=r.my,sz=r.ms;
+    if(r.fatal){
+      var ring=document.createElementNS(ns,'circle');
+      ring.setAttribute('cx',x);ring.setAttribute('cy',y);ring.setAttribute('r',sz+8);
+      ring.setAttribute('fill','none');ring.setAttribute('stroke',col);
+      ring.setAttribute('stroke-width','2');ring.setAttribute('stroke-dasharray','3 2.5');ring.setAttribute('opacity','0.45');
+      g.appendChild(ring);
+    }
+    if(sz>=14){
+      var halo=document.createElementNS(ns,'circle');
+      halo.setAttribute('cx',x);halo.setAttribute('cy',y);halo.setAttribute('r',sz+6);
+      halo.setAttribute('fill',col);halo.setAttribute('opacity','0.1');
+      g.appendChild(halo);
+    }
+    var c=document.createElementNS(ns,'circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',sz);
+    c.setAttribute('fill',col);c.setAttribute('opacity',type==='direct'?'0.88':'0.78');
+    c.setAttribute('stroke','white');c.setAttribute('stroke-width','1.2');
+    g.appendChild(c);
+    if(sz>=18&&r.fatal){
+      var lbl=document.createElementNS(ns,'text');
+      lbl.setAttribute('x',x);lbl.setAttribute('y',y+4);
+      lbl.setAttribute('text-anchor','middle');lbl.setAttribute('font-size','10');
+      lbl.setAttribute('font-weight','700');lbl.setAttribute('fill','white');
+      lbl.setAttribute('pointer-events','none');
+      var km=r.cas.match(/(\d+) killed/);
+      if(km) lbl.textContent=km[1]+'x';
+      g.appendChild(lbl);
+    }
+    var tl=type==='direct'?'Direct warhead impact':'Intercept debris / indirect';
+    var tc2=type==='direct'?'background:#FCEBEB;color:#791F1F':'background:#FAEEDA;color:#633806';
+    var cas=type==='direct'?r.cas:r.summary;
+    var mn=type==='direct'?r.mun:'';
+    g.addEventListener('click',function(e){
+      e.stopPropagation();
+      tip.innerHTML='<div style="font-size:10px;color:var(--text3);margin-bottom:2px">'+r.date+'</div>'
+        +'<div style="font-size:12px;font-weight:600;margin-bottom:3px">'+r.loc+'</div>'
+        +'<span style="display:inline-block;font-size:9px;font-weight:600;padding:1px 6px;border-radius:3px;margin-bottom:5px;'+tc2+'">'+tl+'</span>'
+        +(mn?'<div style="font-size:11px;font-weight:600;color:var(--text);margin-bottom:2px">'+mn+'</div>':'')
+        +'<div style="font-size:11px;color:var(--text2);line-height:1.45;margin-bottom:4px">'+cas+'</div>'
+        +'<div style="font-size:10px;color:var(--text3);border-top:.5px solid var(--border);padding-top:4px;line-height:1.5">'+r.detail.substring(0,200)+(r.detail.length>200?'\u2026':'')+'</div>';
+      tip.classList.add('vis');
+      var lx=e.clientX+14,ly=e.clientY-10,tw=275,th=170;
+      if(lx+tw>window.innerWidth) lx=e.clientX-tw-10;
+      if(ly+th>window.innerHeight) ly=e.clientY-th-10;
+      tip.style.left=lx+'px';tip.style.top=ly+'px';
+    });
+    g.addEventListener('mouseenter',function(){c.setAttribute('opacity','1');});
+    g.addEventListener('mouseleave',function(){c.setAttribute('opacity',type==='direct'?'0.88':'0.78');});
+    mapG.appendChild(g);
+  });
+}
+document.addEventListener('click',function(){tip.classList.remove('vis');});
+renderMarkers(indirectRows,'debris');
+renderMarkers(directRows,'direct');
+
+// ZOOM & PAN
+var vp=document.getElementById('mapVP');
+var canvas=document.getElementById('mapCanvas');
+var SVG_W=560,SVG_H=860;
+var scale=0.78,minScale=0.42,maxScale=4;
+var tx=0,ty=0;
+function clamp(){var vw=vp.offsetWidth||800,vh=vp.offsetHeight||600;tx=Math.max(Math.min(0,vw-SVG_W*scale),Math.min(0,tx));ty=Math.max(Math.min(0,vh-SVG_H*scale),Math.min(0,ty));}
+function applyT(){canvas.style.transform='translate('+tx+'px,'+ty+'px) scale('+scale+')';}
+function initView(){var vw=vp.offsetWidth||800,vh=vp.offsetHeight||600;scale=Math.min(vw/SVG_W,vh/SVG_H)*0.95;tx=(vw-SVG_W*scale)/2;ty=Math.max(vh-SVG_H*scale,-Math.max(0,284*scale-vh*0.3));clamp();applyT();}
+initView();
+function zoomAt(cx,cy,f){var ns2=Math.max(minScale,Math.min(maxScale,scale*f));tx=cx-(cx-tx)*(ns2/scale);ty=cy-(cy-ty)*(ns2/scale);scale=ns2;clamp();applyT();}
+document.getElementById('zoomIn').addEventListener('click',function(){zoomAt(vp.offsetWidth/2,vp.offsetHeight/2,1.35);});
+document.getElementById('zoomOut').addEventListener('click',function(){zoomAt(vp.offsetWidth/2,vp.offsetHeight/2,1/1.35);});
+document.getElementById('resetView').addEventListener('click',function(){initView();});
+vp.addEventListener('wheel',function(e){e.preventDefault();var r=vp.getBoundingClientRect();zoomAt(e.clientX-r.left,e.clientY-r.top,e.deltaY<0?1.12:1/1.12);},{passive:false});
+var drag=false,dsx=0,dsy=0,dstx=0,dsty=0;
+vp.addEventListener('mousedown',function(e){if(e.button!==0)return;drag=true;dsx=e.clientX;dsy=e.clientY;dstx=tx;dsty=ty;e.preventDefault();});
+window.addEventListener('mousemove',function(e){if(!drag)return;tx=dstx+(e.clientX-dsx);ty=dsty+(e.clientY-dsy);clamp();applyT();});
+window.addEventListener('mouseup',function(){drag=false;});
+var lDist=null,pMx=0,pMy=0,ptx=0,pty=0,psc=1;
+vp.addEventListener('touchstart',function(e){if(e.touches.length===2){lDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);var r=vp.getBoundingClientRect();pMx=(e.touches[0].clientX+e.touches[1].clientX)/2-r.left;pMy=(e.touches[0].clientY+e.touches[1].clientY)/2-r.top;psc=scale;ptx=tx;pty=ty;}else if(e.touches.length===1){dsx=e.touches[0].clientX;dsy=e.touches[0].clientY;dstx=tx;dsty=ty;}},{passive:true});
+vp.addEventListener('touchmove',function(e){e.preventDefault();if(e.touches.length===2&&lDist){var d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);var ns2=Math.max(minScale,Math.min(maxScale,psc*(d/lDist)));tx=pMx-(pMx-ptx)*(ns2/psc);ty=pMy-(pMy-pty)*(ns2/psc);scale=ns2;clamp();applyT();}else if(e.touches.length===1){tx=dstx+(e.touches[0].clientX-dsx);ty=dsty+(e.touches[0].clientY-dsy);clamp();applyT();}},{passive:false});
+vp.addEventListener('touchend',function(){lDist=null;},{passive:true});
+</script>
+</body>
+</html>
