@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Reporting Guide — Build Live Intelligence Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f0e0d;
+  --ink2: #3a3830;
+  --ink3: #7a7568;
+  --paper: #faf8f4;
+  --paper2: #f2efe8;
+  --paper3: #e8e3d8;
+  --rule: rgba(15,14,13,0.12);
+  --accent: #c8401a;
+  --accent2: #1a5ca8;
+  --accent3: #187a3c;
+  --gold: #b8962a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 56px 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.masthead::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 50%, var(--accent2) 100%);
+}
+.masthead-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(250,248,244,0.45);
+  margin-bottom: 16px;
+}
+.masthead-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05;
+  font-weight: 400;
+  margin-bottom: 20px;
+  max-width: 700px;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-desc {
+  font-size: 15px;
+  color: rgba(250,248,244,0.65);
+  max-width: 520px;
+  line-height: 1.7;
+}
+.masthead-meta {
+  margin-top: 32px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.meta-pill {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  padding: 5px 12px;
+  border-radius: 3px;
+  background: rgba(250,248,244,0.1);
+  color: rgba(250,248,244,0.65);
+  border: .5px solid rgba(250,248,244,0.15);
+}
+
+/* ── LAYOUT ── */
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.section {
+  padding: 56px 0 0;
+}
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: .5px;
+  background: var(--rule);
+}
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.section-sub {
+  font-size: 14px;
+  color: var(--ink3);
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+
+/* ── TOOLS TABLE ── */
+.tools-table-wrap {
+  overflow-x: auto;
+  border-radius: 6px;
+  border: .5px solid var(--rule);
+  margin-bottom: 0;
+}
+.tools-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  background: var(--paper2);
+}
+.tools-table thead tr {
+  background: var(--ink);
+}
+.tools-table th {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(250,248,244,0.55);
+  padding: 13px 18px;
+  text-align: left;
+  border: none;
+  white-space: nowrap;
+}
+.tools-table th.col-tool { color: rgba(250,248,244,0.9); }
+.tools-table tbody tr {
+  border-bottom: .5px solid var(--rule);
+  transition: background .1s;
+}
+.tools-table tbody tr:last-child { border-bottom: none; }
+.tools-table tbody tr:hover { background: var(--paper3); }
+.tools-table td {
+  padding: 18px 18px;
+  vertical-align: top;
+  line-height: 1.55;
+}
+.tool-cell { width: 100px; }
+.col-where { width: 110px; }
+.tool-cell-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tool-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.tool-badge.claude { background: #f0ede6; }
+.tool-badge.grok   { background: #0f0e0d; color: white; }
+.tool-badge.chatgpt{ background: #e8f5ec; }
+.tool-cell-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+.where-cell a {
+  color: var(--accent2);
+  text-decoration: none;
+  font-size: 12.5px;
+  border-bottom: .5px solid rgba(26,92,168,0.3);
+}
+.where-cell a:hover { border-bottom-color: var(--accent2); }
+.str-cell, .lim-cell { color: var(--ink2); }
+.str-item, .lim-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.str-item:last-child, .lim-item:last-child { margin-bottom: 0; }
+.str-item::before {
+  content: '↑';
+  color: var(--accent3);
+  font-size: 11px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.lim-item::before {
+  content: '↓';
+  color: var(--accent);
+  font-size: 11px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.use-cell {
+  font-size: 12.5px;
+  color: var(--ink3);
+  font-style: italic;
+  min-width: 150px;
+}
+@media (max-width: 700px) {
+  .tools-table th, .tools-table td { padding: 12px 12px; }
+  .col-where { display: none; }
+}
+
+
+/* ── STEPS ── */
+.steps-list {
+  counter-reset: steps;
+  list-style: none;
+  margin-top: 4px;
+}
+.step {
+  counter-increment: steps;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 0 24px;
+  margin-bottom: 0;
+  position: relative;
+}
+.step::before {
+  display: none;
+}
+.step-num-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+.step-num {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.step-line {
+  flex: 1;
+  width: 1px;
+  background: var(--rule);
+  margin-top: 6px;
+  min-height: 40px;
+}
+.step:last-child .step-line { display: none; }
+.step-content {
+  padding-bottom: 40px;
+}
+.step-title {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  color: var(--ink);
+}
+.step-desc {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* ── PROMPT BOX ── */
+.prompt-box {
+  background: var(--ink);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.prompt-bar {
+  background: rgba(255,255,255,0.06);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.prompt-bar-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+}
+.prompt-bar-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-left: 4px;
+}
+.prompt-body {
+  padding: 16px 20px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: rgba(250,248,244,0.8);
+  white-space: pre-wrap;
+}
+.prompt-body .hi { color: var(--gold); }
+.prompt-body .hi2 { color: #7eb8f7; }
+.prompt-body .hi3 { color: #8fce9f; }
+
+.tip-box {
+  background: var(--paper2);
+  border-left: 3px solid var(--gold);
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin-top: 14px;
+}
+.tip-box b { color: var(--ink); }
+
+.update-box {
+  background: var(--paper2);
+  border-left: 3px solid var(--accent2);
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin-top: 14px;
+}
+.update-box b { color: var(--ink); }
+
+/* ── GITHUB SECTION ── */
+.github-steps {
+  list-style: none;
+  counter-reset: gh;
+  margin-top: 4px;
+}
+.gh-step {
+  counter-increment: gh;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 0 16px;
+  margin-bottom: 20px;
+  align-items: start;
+}
+.gh-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink3);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.gh-content {}
+.gh-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.gh-desc {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+.gh-desc a { color: var(--accent2); text-decoration: none; border-bottom: .5px solid; }
+.code-inline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  background: var(--paper3);
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: var(--ink2);
+}
+.img-placeholder {
+  margin-top: 12px;
+  background: var(--paper3);
+  border: .5px solid var(--rule);
+  border-radius: 6px;
+  padding: 18px 20px;
+  font-size: 12px;
+  color: var(--ink3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.img-placeholder-icon { font-size: 22px; }
+
+/* ── FOOTER ── */
+.guide-footer {
+  margin-top: 64px;
+  padding: 32px 0 48px;
+  border-top: .5px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-left {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  color: var(--ink2);
+}
+.footer-right {
+  font-size: 12px;
+  color: var(--ink3);
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .masthead { padding: 40px 24px 32px; }
+  .container { padding: 0 20px; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .qr-grid { grid-template-columns: 1fr; }
+  .step { grid-template-columns: 44px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── MASTHEAD ── -->
+<div class="masthead">
+  <div class="container">
+    <div class="masthead-eyebrow">Internal Reference · AI Tools</div>
+    <h1 class="masthead-title">Building <em>live</em> intelligence reports with AI</h1>
+
+  </div>
+</div>
+
+<!-- ── TOOLS SECTION ── -->
+<div class="container">
+  <div class="section">
+    <div class="section-label">Part one</div>
+    <h2 class="section-title">Choosing the right tool for the job</h2>
+    <p class="section-sub">Each AI platform has a distinct strength. Use them together rather than picking one — they complement each other at different stages of the reporting workflow.</p>
+
+    <div class="tools-table-wrap">
+      <table class="tools-table">
+        <thead>
+          <tr>
+            <th class="col-tool">Tool</th>
+            <th class="col-where">Where to find it</th>
+            <th class="col-str">Strengths</th>
+            <th class="col-lim">Limitations</th>
+            <th class="col-use">Best used for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tool-cell">
+              <div class="tool-cell-inner">
+                <span class="tool-badge claude">🧠</span>
+                <span class="tool-cell-name">Claude</span>
+              </div>
+            </td>
+            <td class="where-cell"><a href="https://claude.ai" target="_blank">claude.ai</a></td>
+            <td class="str-cell">
+              <div class="str-item">Writes, formats and designs entire reports in one go — structured sections, colour-coded tables, interactive maps and charts</div>
+              <div class="str-item">Synthesises multiple sources into coherent, publication-ready analysis</div>
+              <div class="str-item">Produces clean HTML that renders directly in a browser, no extra tools needed</div>
+            </td>
+            <td class="lim-cell">
+              <div class="lim-item">Not the fastest at surfacing breaking news — thorough but not instant</div>
+              <div class="lim-item">Works best when you bring the facts; it builds the structure around them</div>
+            </td>
+            <td class="use-cell">Building and updating the full report once you have gathered your data</td>
+          </tr>
+          <tr>
+            <td class="tool-cell">
+              <div class="tool-cell-inner">
+                <span class="tool-badge grok">𝕏</span>
+                <span class="tool-cell-name">Grok</span>
+              </div>
+            </td>
+            <td class="where-cell"><a href="https://x.com/i/grok" target="_blank">x.com/i/grok</a></td>
+            <td class="str-cell">
+              <div class="str-item">Real-time access to X (Twitter) — ideal for eyewitness accounts, government announcements and breaking clips within minutes of an event</div>
+              <div class="str-item">Fast at pulling raw intelligence across multiple live sources simultaneously</div>
+            </td>
+            <td class="lim-cell">
+              <div class="lim-item">Minimal formatting — output is usually bullet points, not report-ready prose</div>
+              <div class="lim-item">Can surface unverified or low-credibility posts alongside verified ones; always cross-check before using</div>
+            </td>
+            <td class="use-cell">First 30-minute intelligence gathering when speed matters most</td>
+          </tr>
+          <tr>
+            <td class="tool-cell">
+              <div class="tool-cell-inner">
+                <span class="tool-badge chatgpt">🟢</span>
+                <span class="tool-cell-name">ChatGPT</span>
+              </div>
+            </td>
+            <td class="where-cell"><a href="https://chatgpt.com" target="_blank">chatgpt.com</a></td>
+            <td class="str-cell">
+              <div class="str-item">Strong at identifying reliable, named sources — government statements, wire agencies, established outlets</div>
+              <div class="str-item">Good at factual verification and spotting contradictions between sources</div>
+            </td>
+            <td class="lim-cell">
+              <div class="lim-item">Plain formatting — requires significant editing to become report-ready</div>
+              <div class="lim-item">Slower than Grok for truly breaking news; better suited to confirmed and verified developments</div>
+            </td>
+            <td class="use-cell">Source-checking and verification before finalising any report</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>  </div>
+
+  <!-- ── PROMPTING SECTION ── -->
+  <div class="section">
+    <div class="section-label">Part two</div>
+    <h2 class="section-title">How to prompt Claude for a full report</h2>
+    <p class="section-sub">You don't need to write code or know design. Think of prompting like briefing a very capable journalist-designer. The more context you give, the better the output. These four steps are all you need.</p>
+
+    <ol class="steps-list">
+
+      <!-- STEP 1 -->
+      <li class="step">
+        <div class="step-num-col">
+          <div class="step-num">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Set the brief — tell Claude what you're building</div>
+          <p class="step-desc">Start a new Claude conversation and give it the full picture up front: the topic, the audience, what the report should contain, and what it should look like. You're not writing code — you're describing an output the way you'd brief a colleague.</p>
+          <div class="prompt-box">
+            <div class="prompt-bar">
+              <div class="prompt-bar-dot"></div>
+              <div class="prompt-bar-dot"></div>
+              <div class="prompt-bar-dot"></div>
+              <span class="prompt-bar-label">Example opening prompt → paste into Claude</span>
+            </div>
+            <div class="prompt-body"><span class="hi">I want you to build a daily situation report</span> on <span class="hi2">[your topic — e.g. "Iranian attacks on Israel"]</span> as a <span class="hi3">single HTML file</span> that opens in a browser.
+
+The report should include:
+- A header with the title, date, and "OPEN SOURCE ONLY"
+- A 48-hour executive summary with 4 key categories
+- Metric cards showing cumulative totals
+- Key developments section (4 cards in a 2x2 grid)
+- A normalisation indicators table
+- Two charts: daily attack waves and interception rates
+- An interactive map where I can click markers for detail
+- Collapsible impact tables (direct hits + debris/indirect)
+- A sources and casualty footnote
+
+<span class="hi">Use a clean, professional colour scheme</span> — white background, 
+dark text, red for urgent/fatal, amber for significant, 
+green for positive developments. No dark mode.
+
+I'll give you the latest data to populate it.</div>
+          </div>
+          <div class="tip-box"><b>💡 Tip:</b> You only need to write this opening prompt once. For every future update you just say <em>"regenerate with the latest data"</em> and paste in new information — Claude remembers the format from earlier in the conversation.</div>
+        </div>
+      </li>
+
+      <!-- STEP 2 -->
+      <li class="step">
+        <div class="step-num-col">
+          <div class="step-num">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Feed it the data — paste in your gathered intelligence</div>
+          <p class="step-desc">Now paste in everything you've gathered — from Grok, from ChatGPT source checks, from wire services, government statements, or your own notes. You don't need to clean it up perfectly. Claude will extract what's relevant and discard the noise.</p>
+          <div class="prompt-box">
+            <div class="prompt-bar">
+              <div class="prompt-bar-dot"></div>
+              <div class="prompt-bar-dot"></div>
+              <div class="prompt-bar-dot"></div>
+              <span class="prompt-bar-label">Example data prompt → follows your Step 1 brief</span>
+            </div>
+            <div class="prompt-body"><span class="hi">Here is today's raw intelligence. Please build the full report:</span>
+
+<span class="hi2">CASUALTIES:</span>
+- 3 killed in northern city (Hezbollah rocket, confirmed MDA)
+- 47 wounded in missile strike on apartment block
+- Running total: 22 killed, 4,800+ wounded
+
+<span class="hi2">ATTACKS (past 24hrs):</span>
+- Iran: 13 salvos, one unintercepted hit in Tel Aviv
+- Hezbollah: dozens of rockets, northern Israel
+- IDF struck explosives facility near Isfahan
+
+<span class="hi2">DIPLOMACY:</span>
+- US delivered 15-point plan to Iran via back channels
+- Pakistan offered to host talks; Trump reshared post
+- Trump: "They've agreed to never have a nuclear weapon"
+- Iran publicly denying talks
+
+<span class="hi2">AVIATION:</span>
+- Lufthansa extended: Dubai/TLV to 31 May, others to Oct 24
+- Iraq airspace closed through Wednesday
+
+<span class="hi3">Sources: Times of Israel liveblog 24 Mar, Al Jazeera Day 25, 
+CBS News live, NPR, ITV News, JNS, CNN Day 25 live</span></div>
+          </div>
+          <div class="tip-box"><b>💡 Tip:</b> The more organised your notes, the faster Claude works — but even messy pasted text works. Category labels like CASUALTIES: or DIPLOMACY: help it slot information into the right section automatically.</div>
+        </div>
+      </li>
+
+      <!-- STEP 3 -->
+      <li class="step">
+        <div class="step-num-col">
+          <div class="step-num">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Refine — iterate until it looks right</div>
+          <p class="step-desc">Claude will produce a full HTML file. Download it and open it in your browser to check it. Then come back and tweak anything that's off. You can be very casual in how you describe changes — you don't need technical language.</p>
+          <div class="prompt-box">
+            <div class="prompt-bar">
+              <div class="prompt-bar-dot"></div>
+              <div class="prompt-bar-dot"></div>
+              <div class="prompt-bar-dot"></div>
+              <span class="prompt-bar-label">Example refinement prompts — plain English works fine</span>
+            </div>
+            <div class="prompt-body"><span class="hi3">// Ask for specific changes in plain language:</span>
+
+<span class="hi">"The Tel Aviv missile strike should be highlighted in red 
+in the map and tables — it was an interception failure."</span>
+
+<span class="hi">"Add a note at the top of the exec summary that says 
+attacks are continuing alongside diplomatic talks."</span>
+
+<span class="hi">"The normalisation indicators section needs a new row 
+for 'Lebanon expels Iran ambassador' with an amber badge."</span>
+
+<span class="hi">"Can you make the header say Day 26 instead of Day 25?"</span>
+
+<span class="hi3">// For a 12-hour update to an existing report:</span>
+
+<span class="hi2">"Redo this report as a 12-hour update. The key new 
+developments are: [paste new data]. Keep all the 
+existing sections but update the exec summary 
+to reflect the past 12 hours only."</span></div>
+          </div>
+          <div class="tip-box"><b>💡 Tip:</b> Don't try to fix everything in one prompt. Small, specific requests give cleaner results than "fix everything that's wrong." Treat it like a back-and-forth with an editor.</div>
+        </div>
+      </li>
+
+      <!-- STEP 4 -->
+      <li class="step">
+        <div class="step-num-col">
+          <div class="step-num">4</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Download — save the HTML file to your computer</div>
+          <p class="step-desc">When you're happy with the report, Claude will give you a download link. Click it to save the <span class="code-inline">.html</span> file. This single file contains everything — the charts, the map, the tables — all self-contained. You can open it in any browser, email it, or upload it to GitHub to share a live link.</p>
+          <div class="tip-box"><b>💡 Tip:</b> Name your files consistently — e.g. <span class="code-inline">sitrep_25mar2026.html</span> — so they stay organised and colleagues can see the history at a glance.</div>
+          <div class="update-box"><b>📅 For daily updates:</b> You don't need to start a new conversation each day. Just stay in the same Claude chat, say <em>"regenerate with updates for the past 24 hours"</em>, paste in your new data, and Claude will produce a fresh version preserving all the formatting and structure from before.</div>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+
+  <!-- ── GITHUB SECTION ── -->
+  <div class="section">
+    <div class="section-label">Part three</div>
+    <h2 class="section-title">Publishing to a live URL with GitHub</h2>
+    <p class="section-sub">GitHub Pages turns your HTML file into a live webpage anyone can open in a browser — no server, no IT ticket, no cost. Setup takes about 10 minutes and you only do it once.</p>
+
+    <ol class="github-steps">
+
+      <li class="gh-step">
+        <div class="gh-num">1</div>
+        <div class="gh-content">
+          <div class="gh-title">Create a free GitHub account</div>
+          <div class="gh-desc">Go to <a href="https://github.com" target="_blank">github.com</a> and sign up. Use your work email. Once registered, you're ready — no software to install, everything happens in the browser.</div>
+        </div>
+      </li>
+
+      <li class="gh-step">
+        <div class="gh-num">2</div>
+        <div class="gh-content">
+          <div class="gh-title">Create a new repository (think of it as a project folder)</div>
+          <div class="gh-desc">Click the green <strong>New</strong> button on your GitHub homepage. Give your repository a name — e.g. <span class="code-inline">Iran-SitRep</span>. Set it to <strong>Public</strong> (required for free GitHub Pages). Tick <em>"Add a README file"</em> then click <strong>Create repository</strong>.</div>
+          <div class="img-placeholder">
+            <span class="img-placeholder-icon">📁</span>
+            <span>Your repository is now live at <span class="code-inline">github.com/your-username/Iran-SitRep</span></span>
+          </div>
+        </div>
+      </li>
+
+      <li class="gh-step">
+        <div class="gh-num">3</div>
+        <div class="gh-content">
+          <div class="gh-title">Upload your HTML file and name it <span class="code-inline">index.html</span></div>
+          <div class="gh-desc">Inside your repository, click <strong>Add file → Upload files</strong>. Drag in your report HTML. <strong>Important:</strong> rename it to <span class="code-inline">index.html</span> before uploading — this tells GitHub Pages to treat it as the homepage. Then click <strong>Commit changes</strong>.</div>
+          <div class="tip-box"><b>💡 Tip:</b> Every time you upload a new <span class="code-inline">index.html</span> it automatically overwrites the previous version and your live link updates within about 60 seconds. No extra steps needed for daily updates — just upload and you're done.</div>
+        </div>
+      </li>
+
+      <li class="gh-step">
+        <div class="gh-num">4</div>
+        <div class="gh-content">
+          <div class="gh-title">Turn on GitHub Pages</div>
+          <div class="gh-desc">In your repository, click <strong>Settings</strong> → scroll down to <strong>Pages</strong> in the left sidebar → under <em>Source</em>, select <strong>Deploy from a branch</strong> → choose <strong>main</strong> branch and <strong>/ (root)</strong> folder → click <strong>Save</strong>.</div>
+          <div class="img-placeholder">
+            <span class="img-placeholder-icon">🌐</span>
+            <span>After ~60 seconds your report is live at <span class="code-inline">your-username.github.io/Iran-SitRep</span></span>
+          </div>
+        </div>
+      </li>
+
+      <li class="gh-step">
+        <div class="gh-num">5</div>
+        <div class="gh-content">
+          <div class="gh-title">Share the link — that's it</div>
+          <div class="gh-desc">Copy the URL from the Pages settings page and share it with anyone. The link is permanent, loads instantly in any browser, and the interactive features — maps, charts, collapsible tables — all work without any app or plugin. To update the report: generate a new HTML from Claude, rename it <span class="code-inline">index.html</span>, upload it to GitHub, and the live link refreshes automatically.</div>
+          <div class="update-box"><b>🔁 Daily update routine:</b> Generate updated HTML in Claude → download it → rename to <span class="code-inline">index.html</span> → drag into GitHub repository → click Commit. Takes under two minutes once you have the workflow running.</div>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+
+
+  <!-- ── FOOTER ── -->
+  <div class="guide-footer">
+    <div class="footer-left">Good luck — the reports look great. 🗺️</div>
+    <div class="footer-right">Prepared for internal handover<br>March 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
